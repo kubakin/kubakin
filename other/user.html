@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'>
+    <title>Document</title>
+    <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js'></script>
+</head>
+    <body>
+        <div id="id123">
+            <p>{{converted}}</p>
+            <button v-on:click='findIt'>find</button>
+            <div class="forma">
+                <input v-model='studInput' list="colors-list">
+
+            <datalist id="colors-list">
+            <option v-for='who in getKeyFunc'>{{who}}</option>
+             </datalist>
+            </div>
+         
+    
+           <div class="showPos">
+
+           </div>
+           <ul>
+               <li v-for='one in posOfStud'>{{one}}</li>
+           </ul>
+        </div>
+    </body>
+    <script>
+        var app = new Vue({
+            el:'#id123',
+            data:{
+                students: [],
+                who: '',
+                students1:[],
+                studInput:'',
+                tester:'',
+                posOfStud: []
+            },
+          created() {
+            axios.get(`http://localhost/basic/web/student/uids`)
+                .then(response => (this.students1 = response.data))
+         
+               
+                    //console.log('hi')
+             
+            },
+            methods:{
+           /* addTab:function() {
+                axios.post('http://localhost/basic/web/tab/add', {
+                    uids_tab:'adzhoyan',
+                    data: '2020-03-03',
+                    itog: 'dasda',
+                    predmet: 'haha'
+                }).then((response) => {
+                    console.log(response);
+                })
+            },
+            */
+            findIt: function() {
+                axios.get(`http://localhost/basic/web/student/`)
+                .then(response => (this.students = response.data))
+                this.posOfStud = []
+                tekStudInput = this.students1[this.studInput]
+                console.log(tekStudInput)
+               // var test1 = this.students.filter(student => student.id = 'aefimova')
+               // console.log(test1)
+                this.students.forEach(massOfPos => {
+                    if (massOfPos.id == 'aefimova') 
+                        
+    
+                    //console.log(element.pos)
+                    massOfPos.pos.forEach(aboutPos => {
+                        //console.log(aboutPos.itog)
+                        if (aboutPos.predmet == 'math') {
+                        this.posOfStud.push(aboutPos)
+                    }
+                    })
+                });
+                //console.log(test1)
+            }
+            },
+            computed: {
+                /*
+                group: function() {
+                return this.students.filter(student => student.id == 'aefimova')
+            },
+            */
+                getKeyFunc: function() {
+                return Object.keys(this.students1);
+            },
+            converted: function() {
+                return this.students1[this.studInput];
+            }
+                
+               
+            }
+        })
+    </script>
+</html>
