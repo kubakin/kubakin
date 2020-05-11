@@ -1,0 +1,26 @@
+\usepackage[koi8-r]{inputenc}
+\usepackage[english, russian] {babel}
+\inputencoding{koi8-r}
+\usepackage[T2A] {fontenc}
+\usepackage{letterspace}
+
+% В текст будут включены объекты Postscript
+
+\usepackage{a4}
+\usepackage{epsfig, graphicx, euscript}
+\tolerance=400
+\pagestyle{plain}
+\title{Пример включения eps-файла в документ}
+\author{О. Ю. Богоявленская}
+\date{}
+\begin{document}
+\begin{figure}%
+\begin{center}
+{\includegraphics[width=0.73\textwidth, height=0.27\textheight]
+{w-dist-s.eps}}%
+\quad\mbox{}
+\end{center}
+\vspace{-7mm}
+\caption{Распределение функции частот.}
+\label{freq_dist}
+\end{figure}

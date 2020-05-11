@@ -1,0 +1,2 @@
+\documentclass[a4paper,12pt]{report}\usepackage[utf8]{inputenc}\usepackage[english,russian]{babel}\usepackage{epsfig}\usepackage{verbatim}\usepackage{gnuplottex}\begin{document}
+\section{Построение графиковGnuplotв документе\LaTeX}\begin{figure}[h]\centering\begin{gnuplot}plotx**3 title'Кубическая парабола $y = x^3$'\end{gnuplot}\end{figure}
